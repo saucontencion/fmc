@@ -1,0 +1,1 @@
+intentar agregar angular los controles, para algunos aspectos de la app y preguntar a chatgpt si al subir a produccion es como en astro con build, que ejcuta check y build,  y crea la carpeta dist, como seria para mi proyecto en html,css ,js y ahora angularjs
