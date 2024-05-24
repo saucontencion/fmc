@@ -9,7 +9,7 @@
         const processedImage = document.getElementById('processedImage');
         const imgForm = document.getElementById('imgForm')
 
-        let currentState = "1"; // pasar a un string 
+        let currentState = 1; // pasar a un string 
         let arrayState = []; // Se declara la variable arrayState fuera de las funciones para que sea accesible para ambas funciones
 
         function show(elementclass) {
@@ -22,7 +22,8 @@
             });
         }
         
-        function hide() {
+        function hide(elementclass) {
+            arrayState = document.querySelectorAll(elementclass);
             // Iterar sobre los elementos almacenados en arrayState y ocultarlos
             arrayState.forEach(element => {
                 element.style.display = 'none';

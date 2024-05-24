@@ -22,3 +22,8 @@ proyecto fotomontaje del carnet
 5. Manejo de Respuestas del Servidor
    - [ ] Analizar si la solicitud será POST o GET.
    - [ ] Si es POST, desestructurar los datos y asignarlos al canvas o imagen utilizando el atributo src.
+ 
+ add. 
+   corregir funcion switchState 
+   - [x] agregar paramentro elementClass a la funcion hidden 
+   - [x] inicializar arrayState en funcion hidden con los elementoClass
