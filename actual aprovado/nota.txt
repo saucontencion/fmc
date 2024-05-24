@@ -1,1 +1,12 @@
-1 tengo que arreglar el formulario<
+1 tengo que arreglar el formulario
+
+2 que se hizo:
+..1  se agrego patron de control al input de rut del formulario
+..2 se agrego el input de img a al formulario
+..3 se agrego el evento para guardar y convertir en base 64 la imagen del canvas 
+..4 tengo que agregar la base64 a la imagen de formulario
+
+
+3. a por agregar el action al formulario, para ver a donde enviar los los datos y la imagen
+ b agregar el manejador de eventos para cuando reciba la informacion desde el servidor
+ ver si ese va a ser una nueva pagina con los elementos anteriores cargados 

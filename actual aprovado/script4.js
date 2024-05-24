@@ -7,6 +7,7 @@
         const continueButton = document.getElementById('continue');
         const printButton = document.getElementById('print');
         const processedImage = document.getElementById('processedImage');
+        const imgForm = document.getElementById('imgForm')
 
         let currentState = 1;
         let arrayState = []; // Se declara la variable arrayState fuera de las funciones para que sea accesible para ambas funciones
@@ -61,6 +62,10 @@
         }
 
         function savePhoto() {
+                dataURL = canvas.toDataURL(); // Convertir imagen a base64
+                // Aquí puedes enviar 'dataURL' a tu servidor para guardarla en la base de datos
+                console.log('Imagen guardada:', dataURL);
+                imgForm.src = dataURL
             // Aquí puedes agregar lógica para enviar la foto y datos al servidor
             switchState(3);
         }
