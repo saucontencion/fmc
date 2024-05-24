@@ -4,11 +4,12 @@
         const snapButton = document.getElementById('snap');
         const retryButton = document.getElementById('retry');
         const saveButton = document.getElementById('save');
-        const continueButton = document.getElementById('continue');
+        const form = document.getElementById('form');
         const printButton = document.getElementById('print');
         const processedImage = document.getElementById('processedImage');
+        const imgForm = document.getElementById('imgForm')
 
-        let currentState = 1;
+        let currentState = "1"; // pasar a un string 
         let arrayState = []; // Se declara la variable arrayState fuera de las funciones para que sea accesible para ambas funciones
 
         function show(elementclass) {
@@ -30,9 +31,9 @@
         
 
         function switchState(newState) {
-            hide(`state${currentState}`);
+            hide(`.state${currentState}`);
             currentState = newState;
-            show(`state${currentState}`);
+            show(`.state${currentState}`);
         }
 
         function initializeCamera() {
@@ -61,12 +62,32 @@
         }
 
         function savePhoto() {
-            // Aquí puedes agregar lógica para enviar la foto y datos al servidor
+                dataURL = canvas.toDataURL(); // Convertir imagen a base64
+                // Aquí puedes enviar 'dataURL' a tu servidor para guardarla en la base de datos
+                console.log('Imagen guardada:', dataURL);
+                imgForm.src = dataURL
             switchState(3);
         }
 
         function continueProcess() {
             // Aquí puedes agregar lógica para continuar con el proceso
+            fetch(formulario.action, {
+                method: 'POST',
+                body: new FormData(formulario)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al enviar los datos al servidor');
+                }
+                return response.text(); // Leer la respuesta del servidor como texto
+            })
+            .then(data => {
+                // Manejar la respuesta del servidor
+                respuestaContainer.textContent = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
             switchState(4);
         }
 
@@ -77,8 +98,12 @@
         snapButton.addEventListener('click', capturePhoto);
         retryButton.addEventListener('click', retryCapture);
         saveButton.addEventListener('click', savePhoto);
-        continueButton.addEventListener('click', continueProcess);
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            continueProcess();
+            
+        });
         printButton.addEventListener('click', printImage);
 
-        initializeCamera();
- 
+
+    window.addEventListener('load', initializeCamera());
