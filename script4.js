@@ -72,8 +72,50 @@ window.addEventListener('load', function () {
                     console.log('Imagen guardada:', dataURL);
                     imgForm.src = dataURL
                 switchState(3);
-            }
+            };
     
+            
+            function formatRut() {
+                let input = document.getElementById('rutInput');
+                let rut = input.value;
+                
+                // Eliminar todos los caracteres que no sean dígitos o K
+                rut = rut.replace(/[^0-9kK]/g, '').toUpperCase();
+                
+                // Asegurarse que el RUT tenga al menos un dígito verificador
+                if (rut.length < 2) {
+                    input.value = rut;
+                    return;
+                }
+                
+                // Separar el dígito verificador del número
+                let number = rut.slice(0, -1);
+                let dv = rut.slice(-1);
+                
+                // Añadir puntos cada tres dígitos
+                let formattedNumber = '';
+                while (number.length > 3) {
+                    formattedNumber = '.' + number.slice(-3) + formattedNumber;
+                    number = number.slice(0, -3);
+                }
+                formattedNumber = number + formattedNumber;
+                
+                // Concatenar el número formateado con el dígito verificador
+                input.value = formattedNumber + '-' + dv;
+            }
+            
+            
+            function validateRut() {
+                let rutV = rut.value;
+                let rutPattern = /^\d{1,2}\.\d{3}\.\d{3}-[\d\|kK]$/;
+                
+                if (rutPattern.test(rutV)) {
+                    spanM.textContent = 'RUT válido';
+                } else {
+                    spanM.textContent = 'Ingrese un RUT válido (ej. 12.345.678-9)';
+                }
+            }
+            
             function continueProcess() {
                 // Aquí puedes agregar lógica para continuar con el proceso
                 fetch(form.action, {
@@ -140,52 +182,14 @@ window.addEventListener('load', function () {
                 console.log('Proceso finalizado');
                 // Cambiar el estado a 6
                 switchState(6);
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
             };
             
-
             
-
-            function formatRut() {
-                let input = document.getElementById('rutInput');
-                let rut = input.value;
-        
-                // Eliminar todos los caracteres que no sean dígitos o K
-                rut = rut.replace(/[^0-9kK]/g, '').toUpperCase();
-        
-                // Asegurarse que el RUT tenga al menos un dígito verificador
-                if (rut.length < 2) {
-                    input.value = rut;
-                    return;
-                }
-        
-                // Separar el dígito verificador del número
-                let number = rut.slice(0, -1);
-                let dv = rut.slice(-1);
-        
-                // Añadir puntos cada tres dígitos
-                let formattedNumber = '';
-                while (number.length > 3) {
-                    formattedNumber = '.' + number.slice(-3) + formattedNumber;
-                    number = number.slice(0, -3);
-                }
-                formattedNumber = number + formattedNumber;
-        
-                // Concatenar el número formateado con el dígito verificador
-                input.value = formattedNumber + '-' + dv;
-            }
-
-
-            function validateRut() {
-                let rutV = rut.value;
-                let rutPattern = /^\d{1,2}\.\d{3}\.\d{3}-[\d\|kK]$/;
-
-                if (rutPattern.test(rutV)) {
-                    spanM.textContent = 'RUT válido';
-                } else {
-                    spanM.textContent = 'Ingrese un RUT válido (ej. 12.345.678-9)';
-                }
-            }
-    
             snapButton.addEventListener('click', capturePhoto);
             retryButton.addEventListener('click', retryCapture);
             saveButton.addEventListener('click', savePhoto);

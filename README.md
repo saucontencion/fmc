@@ -40,7 +40,7 @@ proyecto fotomontaje del carnet
    3.- [x] el boton procesar construye 1 imagen donde dibuja la imagen original (paso 1) encima un cuadro negro y despues el rut y nombre completo
    tambien se añade 1 boton para imprimir 
    4.- [x] al imprimir procede a la pagina del pago, despues de haber pagado se imprime
-
+   5. -[x] agregar confeti
 # datos interesantes
 
 1. [x] el misterior del selector del canvas, al seleccionarlo con el id "canvas" no funciona pero si lo cambio por cualquier otra cosa si, a que se debera esto? 
