@@ -19,23 +19,29 @@
                 <input name="name" type="text" placeholder="¨Pedro Perez"  required>
             </div>
             <div>
-                <label for="rut">ingresa tu rut</label>
-                <input type="text" id="rut" name="rut" pattern="\d{7,8}-[\d|kK]" required>
+                <label for="rutInput">ingresa tu rut</label>
+                <input type="text" id="rutInput" pattern="\d{1,2}\.\d{3}\.\d{3}-[\d\|kK]" maxlength="12"  title="Ingrese un RUT válido (ej. 12.345.678-9)">
+                <span id="rutValidationMessage"></span>
             </div>
             <input type="image" src="" alt="" style="display: none;" id="imgForm">
             <div>
                 <!-- abria que cambiarlo con un boton normal para que no haga nada -->
-                <input type="submit" value="continuar">
+                <input type="submit" value="procesar">
             </div>
             <!-- //se que tiene que estar relacionado con el boton de continuar y el action o el name -->
         </form>
+        <h1 class="state5" style="display: none;" > la pagina del pago,</h1>
+        <div id="procesando">Procesando...</div>
+        <div id="countdown" style="display: none;">4</div>
+        <h1 class="state6" style="display: none;"> pago ha sido comfirmado, imprimir</h1>
+        <img id="procesedImage" src="" alt="imagen procesada" style="display: none;" class="state4">
+       
         <div class="button-container">
             <button id="snap" class="state1">sacar foto</button>
-            <button id="retry" class="state2">tomar la foto de nuevo</button>
-            <button id="save" class="state2" style="display: none;">  guardar</button>
+            <button id="retry" class="state2"> reintentar tomar la foto de nuevo</button>
+            <button id="save" class="state2" style="display: none;">  guarcontinuar</button>
             <button id="print" class="state4" style="display: none;"> imprimir</button>
         </div>
-        <img id="procesedImage" src="" alt="imagen procesada" style="display: none;" class="state4">
     </div>
     <script src="script4.js"></script>
 </body>
